@@ -1,0 +1,55 @@
+{% extends 'todo/base.html' %}
+{% load static %}
+{% block content %}
+<div id="content" class="container">
+    <!-- === BEGIN CONTENT === -->	<div class="row margin-vert-30">
+    <!-- Main Column -->
+    <div class="col-md-9">
+        <!-- Main Content -->
+        <div class="headline"><h2>Contact Form</h2></div>
+        <p>please provide your email address and Message. we will be in touch with you as soon as possible.</p><br>
+        <!-- Contact Form -->
+        <form method="POST">
+            {% csrf_token %}
+            <label>Email: <span class="color-red">*</span></label>
+            <div class="row margin-bottom-20">
+                <div class="col-md-6 col-md-offset-0">
+                    <input name="email" class="form-control" type="text" required>
+                </div>
+            </div>
+            
+            <label>Message: <span class="color-red">*</span></label>
+            <div class="row margin-bottom-20">
+                <div class="col-md-8 col-md-offset-0">
+                    <textarea name="message" rows="8" class="form-control"></textarea>
+                </div>
+            </div>
+            
+            <p><button type="submit" class="btn btn-bronze">Send Message</button></p>
+        </form>
+        <!-- End Contact Form -->
+        <!-- End Main Content -->
+    </div>
+    <!-- End Main Column -->
+    <!-- Side Column -->
+    <div class="col-md-3">
+        <!-- Recent Posts -->
+        <div class="panel panel-default" style="width: fit-content;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Contact Info</h3>
+            </div>
+            <div class="panel-body">
+                <p>Feel free to check out my personal website for more projects and more contact info</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa-envelope color-primary"></i>my.story.blogwebsite2@gmail.com</li>
+                    <li><i class="fa-home color-primary"></i><a href="https://hkstefan.pythonanywhere.com/" target="_blank">hkstefan.pythonanywhere.com/</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <!-- End recent Posts -->  
+    </div>
+    <!-- End Side Column -->
+</div>
+</div>
+{% endblock %}

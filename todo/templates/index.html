@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'home/style.css' %}" />
+    <title>My Story
+    </title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="split left">
+        <div class="text">
+          <h1>Global Space</h1>
+          <p>check out public stories and blogs</p>
+          <p><small>you don't need to signup or login</small></p>
+          
+          <a href="{% url 'global' %}" class="btn">Go Global</a>
+        </div>
+        
+      </div>
+      <div class="split right">
+        <div class="text">
+          <h1>Private Space</h1>
+          <p>write your own story and blog</p>
+          <p>you can share it with global space
+            <br> or keep it private for yourself</p>
+          <a href="{% url 'signupuser' %}" class="btn">Go Private</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script src="{% static 'home/script.js' %}"></script> -->
+  </body>
+</html>

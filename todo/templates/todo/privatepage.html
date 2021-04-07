@@ -1,0 +1,123 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+{% load static %}
+<div id="content" class="container">
+    <h1>My Stories:</h1>
+    <div class="row margin-vert-30">
+        <div class="col-md-9">
+
+            {% for post in todos %}
+            <div class="blog-post padding-bottom-20">
+                <!-- Blog Item Header -->
+                <div class="blog-item-header">
+                    <!-- Date -->
+                    <div class="blog-post-date pull-left">
+                        <span class="day">{{post.created.day}}</span>
+                        <span class="month">{{post.created|date:'M'}}</span>
+                    </div>
+                    <!-- End Date -->
+                    <!-- Title -->
+                    <h2>
+                    <a href="#">
+                    {{post.title}}	
+                	</a>
+                    </h2>
+                    <div class="clearfix"></div>
+                    <!-- End Title -->
+                </div>
+                <!-- End Blog Item Header -->
+                <!-- Blog Item Details -->
+                <div class="blog-post-details">
+                    <!-- Author Name -->
+                    <div class="blog-post-details-item blog-post-details-item-left user-icon">
+                        <i class="fa fa-user"></i>
+                        <a href="{% url 'viewprofile' post.user.username %}">{{post.user.username}}</a>
+                    </div>
+                    <!-- End Author Name -->
+
+                    <!-- # of Comments -->
+                    <div
+                        class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last comments-icon" style="color: darkgray;">
+                        
+                            <i class="fa fa-comments"></i>
+                            {{post.numberofcomments}} Comment{{post.numberofcomments|pluralize}}
+                        
+                    </div>
+                    {% if post.private %}
+                    <div class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last comments-icon" style="color: darkgray;">
+                        <i class="fa fa-user"></i>
+                        PRIVATE
+                    </div>
+                    {% else %}
+                    <div class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last comments-icon" style="color: darkgray;">
+                        <i class="fa fa-globe"></i>
+                        PUBLIC
+                    </div>
+                    {% endif %}
+
+
+
+                    <!-- End # of Comments -->
+                </div>
+                <!-- End Blog Item Details -->
+                <!-- Blog Item Body -->
+                <div class="blog">
+                    <div class="clearfix"></div>
+                    <div class="blog-post-body row margin-top-15">
+                        <div class="col-md-5">
+                            <img class="pull-left"  src="{{post.pic.url}}" alt="">
+                        </div>
+                        <div class="col-md-7" >
+                            <p>{{post.memo|truncatechars:360}}</p>
+                            <!-- Read More -->
+                            <div style="display: flex;">
+                                <form action="{% url 'fullstory' %}" method="POST" style="margin: 5px;">
+                                    {% csrf_token %}
+                                    <a href="#" class="btn btn-primary" onclick="this.parentNode.submit();">
+                                        Read More <i class="icon-chevron-right readmore-icon"></i>
+                                    </a>
+                                    <input type="hidden" name="post_pk" value="{{post.pk}}">
+                                </form>
+                                <br>
+                                {% if request.user == post.user %}
+                                <form action="{% url 'editstory' post.id %}" method="GET" style="margin: 5px;">
+                                    
+                                    <input type="hidden" name="post_pk" value="{{post.pk}}">
+                                    <a  class="btn btn-blue" onclick="this.parentNode.submit();">
+                                        Edit story <i class="icon-chevron-right readmore-icon"></i>
+                                    </a>
+                                    
+                                </form>
+                                <form action="{% url 'deletestory'%}" method="POST" style="margin: 5px;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="post_pk" value="{{post.pk}}">
+                                    <a  class="btn btn-red" onclick="this.parentNode.submit();">
+                                        Delete story <i class="icon-chevron-right readmore-icon"></i>
+                                    </a>
+                                    
+                                </form>
+                                {% endif %}
+                            </div>
+                            <!-- End Read More -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Blog Item Body -->
+            </div>
+            {% endfor %}
+            <!-- Pagination -->
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li class="disabled"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+            <!-- End Pagination -->
+        </div>
+    </div>
+</div>
+{% endblock %}

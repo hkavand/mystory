@@ -1,0 +1,144 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+{% load static %}
+<div id="content" class="container">
+    <div class="row margin-vert-30">
+        <div class="col-md-12">
+            <div class="blog-post">
+                <div class="blog-item-header">
+                    <div class="blog-post-date pull-left">
+                        <span class="day">{{post.created.day}}</span>
+                        <span class="month">{{post.created|date:'M'}}</span>
+                    </div>
+                    <h2>
+                        {{post.title}}
+                    </h2>
+                </div>
+                <div class="blog-post-details">
+                    <!-- Author Name -->
+                    <div class="blog-post-details-item blog-post-details-item-left user-icon">
+                        <i class="fa fa-user"></i>
+                        <a href="#">{{post.user.username}}</a>
+                    </div>
+                    <!-- End Author Name -->
+                    <!-- # of Comments -->
+                    <div
+                        class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last comments-icon">
+                        <a href="#">
+                            <i class="fa fa-comments"></i>
+                            {{post.numberofcomments}} Comment{{post.numberofcomments|pluralize}}
+                        </a>
+                    </div>
+                    <!-- End # of Comments -->
+                </div>
+                <div class="blog-item">
+                    <div class="clearfix"></div>
+                    <div class="blog-post-body row margin-top-15">
+                        <div class="col-md-5">
+                            <img class="pull-left" src="{{post.pic.url}}" alt="image1">
+                        </div>
+                        <div class="col-md-15" style="margin-left: 15px;">
+                            <p>{{post.memo}}</p>
+                        </div>
+                        
+                        <!-- <div class="col-md-12">
+                            
+                            <p>{{post.memo|slice:'680:'}}</p>
+                        </div> -->
+                    </div>
+                    <div class="blog-item-footer">
+                        <!-- About the Author -->
+                        <div class="blog-author panel panel-blue  margin-bottom-30" >
+                            <div class="panel-heading">
+                                <h3 style="color: darkgray;">About the Author</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                       <a href="{% url 'viewprofile' post.user.username %}"> <img class="pull-left" src="{{about.pic.url}}" alt="image1"></a>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <label><a href="{% url 'viewprofile' post.user.username %}">{{post.user.username}}</a></label>
+                                        <p>{{about.bio|slice:':200'}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End About the Author -->
+                        <!-- Comments -->
+                        <div class="blog-recent-comments panel panel-default margin-bottom-30">
+                            <div class="panel-heading">
+                                <h3>Comments</h3>
+                            </div>
+                            <ul class="list-group">
+                                {% for comment in comments %}
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-2 profile-thumb">
+                                            <a  href="{% url 'viewprofile' comment.authoruser.username %}" target="_blank">
+                                                <img class="media-object" src="{{comment.pic.url}}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <h4><a href="{% url 'viewprofile' comment.authoruser.username %}" target="_blank">{{comment.authoruser.username}}</a>
+                                                <small>
+                                                    <span class="date">
+                                                        <i class="fa fa-clock-o"></i>
+                                                         {{comment.date}}
+                                                    </span>
+                                                </small>
+                                            </h4>
+                                            
+                                            <p>{{comment.text}}</p>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+
+                                
+                                <!-- Comment Form -->
+                                <li class="list-group-item">
+                                    <div class="blog-comment-form">
+                                        <div class="row margin-top-20">
+                                            <div class="col-md-12">
+                                                <div class="pull-left">
+                                                    <h3>Leave a Comment</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row margin-top-20">
+                                            <div class="col-md-12">
+                                                <form action="{% url 'savecomment' %}" method="POST">
+                                                    {% csrf_token %}
+                                                    <label>Message</label>
+                                                    <div class="row margin-bottom-20">
+                                                        <div class="col-md-11 col-md-offset-0">
+                                                            <textarea class="form-control" rows="8" name="message"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" name="post_pk" value="{{post.pk}}">
+                                                    
+                                                    <p><button class="btn btn-primary" type="submit">Leave comment</button></p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- End Comment Form -->
+                            </ul>
+                            
+                        </div>
+                        <!-- End Comments -->
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- End Blog Post -->		
+        </div>
+    </div>
+</div>
+
+{% endblock %}

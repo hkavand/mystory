@@ -1,0 +1,70 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+{% load static %}
+<div id="content" class="container" >
+    <br>
+    <form action="{% url 'editstory' post.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="post_pk" >
+        <label>Title: <span class="color-red">*</span></label>
+        <div class="row margin-bottom-20">
+            <div class="col-md-6 col-md-offset-0">
+                <input name="title" class="form-control" type="text" maxlength="100" value="{{post.title}}" required>
+            </div>
+        </div>
+
+        <label>content: <span class="color-red">*</span></label>
+        <div class="row margin-bottom-20">
+            <div class="col-md-8 col-md-offset-0">
+                <textarea name="content" rows="8" class="form-control" required>{{post.memo}}</textarea>
+            </div>
+        </div>
+
+        <label>picture:(optional)</label>
+        <div class="row margin-bottom-20">
+            <div class="col-md-8 col-md-offset-0">
+                <input type="file" name="pic" accept="image/x-png,image/gif,image/jpeg" >
+            </div>
+        </div>
+        
+        <div class="row margin-bottom-20">
+            <div class="col-md-8 col-md-offset-0">
+                {% if post.private %}
+                <label for="">Private <input type="radio" name="private" value="1" checked></label>
+                <label for="">Public <input type="radio" name="private" value="0" ></label>
+                {% else %}
+                <label for="">Private <input type="radio" name="private" value="1"></label>
+                <label for="">Public <input type="radio" name="private" value="0" checked></label>
+                {% endif %}
+
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        
+    </form>
+    <form action="{% url 'deletestory'%}" method="POST" style="margin: 5px;">
+        {% csrf_token %}
+        <input type="hidden" name="post_pk" value="{{post.pk}}">
+        <a  class="btn btn-red" onclick="this.parentNode.submit();">
+            Delete story <i class="icon-chevron-right readmore-icon"></i>
+        </a>
+        
+    </form>
+</div>
+<br>
+<br>
+<style>
+    #pre_header,#footer{
+        background-image: url('../static/img1.jpg');
+    }
+    .hidden-lg, .slicknav_nav {
+        background-image: url('../static/img1.jpg');
+    }
+    .nav.navbar-nav,.nav.navbar-nav li,.nav.navbar-nav:hover{
+        background-image: inherit;
+    }
+    
+</style>
+
+{% endblock %}

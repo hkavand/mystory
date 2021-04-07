@@ -1,0 +1,73 @@
+{% extends 'todo/base.html' %}
+{% block content %}
+{% load static %}
+<div id="content" class="container">
+    <div class="row margin-vert-30">
+        <div class="col-md-12">
+            <h2>Profile:</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{aboutuser.pic.url}}" alt="img" class="margin-top-10" >
+                </div>
+                <div class="col-md-9 margin-bottom-10">
+                    <h2 class="padding-top-10 pull-left"><small>username:</small> @{{user.username}}</h2>
+                    <br>
+                    <br>
+                    <h4 class=""><small> fullname:</small> {{user.last_name}}</h4>
+                    <br>
+                    <div class="clearfix"></div>
+                    <p>{{aboutuser.bio}}</p>
+                </div>
+            </div>
+            <hr>
+            <!-- personal slogan -->
+            <div class="row">
+                <h2 class="text-center margin-top-10">
+                    <span class="fa-quote-left"></span>
+                     {{aboutuser.slogan}}
+                    <span class="fa-quote-right"></span>
+                    </h2>
+            </div>
+            <hr>
+            <!-- My Work -->
+            <div class="row">
+                <div class="portfolio-group margin-top-20">
+                    {% for post in posts %}
+                    <div class="portfolio-item col-sm-4 animate fadeIn">
+                        <div class="image-hover">
+                            <a href="#">
+                                <figure>
+                                        <img src="{{post.pic.url}}" alt="image1" style="max-height: 200px;width: 300px;"">
+                                        <form class="overlay"  action="{% url 'fullstory' %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="post_pk" value="{{post.pk}}">
+                                            <a class="expand" href="#" onclick="this.parentNode.submit();">Image Link</a>
+                                        </form>
+                                </figure>
+                                <h3 class="margin-top-20">{{post.title}}</h3>
+                                <p class="margin-top-10 margin-bottom-20">{{post.memo|truncatechars:100}}</p>
+                                <div >
+                                    <form action="{% url 'fullstory' %}" method="POST" >
+                                        {% csrf_token %}
+                                        <input type="hidden" name="post_pk" value="{{post.pk}}">
+                                        <a class="info btn btn-default" href="#" onclick="this.parentNode.submit();" style="right: 0%;width: fit-content;">Read more</a>
+                                    </form>
+                                    <form action="{% url 'editstory' post.id %}" method="GET" >
+                                        <input type="hidden" name="post_pk" value="{{post.pk}}">
+                                        <a class="info btn btn-default" href="#" onclick="this.parentNode.submit();"style="left: 0%;width: fit-content; border-radius: 4px;">Edit</a>
+                                    </form>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- End My Work -->
+            <hr class="margin-bottom-40">
+
+        </div>
+    </div>
+</div>
+{% endblock %}

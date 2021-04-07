@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+	<!-- Title -->
+	<title>My Story</title>
+	<!-- Meta -->
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="blog and stories">
+	<meta name="author" content="hossein kavand">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<!-- Favicon -->
+	<!-- <link href="favicon.html" rel=""> -->
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="{% static 'all/css/bootstrap.css' %}" rel="stylesheet">
+	<!-- Template CSS -->
+	<link rel="stylesheet" href="{% static 'all/css/animate.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'all/css/font-awesome.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'all/css/nexus.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'all/css/responsive.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'all/css/custom.css' %}" rel="stylesheet">
+	<!-- Google Fonts-->
+	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+</head>
+
+
+<!-- <style>
+.video-container {
+    height: 300px;
+    width: 100%;
+    position: relative;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Just styling the content of the div, the *magic* in the previous rules */
+.video-container .caption {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  color: #dc0000;
+  padding: 10px;
+}
+</style> -->
+<style>
+    #pre_header,#footer{
+        background-image: url('../static/img1.jpg');
+    }
+    .hidden-lg, .slicknav_nav {
+        background-image: url('../static/img1.jpg')
+    }
+    .nav.navbar-nav,.nav.navbar-nav li,.nav.navbar-nav:hover{
+        background-image: inherit;
+    }
+    
+</style>
+
+
+
+<body>
+	<div id="pre_header" class="visible-lg video-container">
+        <!-- <video autoplay muted loop>
+            <source src="{% static 'background.mp4' %}" type="video/mp4" />
+        </video> -->
+    </div>
+	<div id="header" class="container">
+		<div class="row">
+			<!-- Logo -->
+			<div class="logo">
+				<a href="{% url 'home' %}" title="">
+					<img src="{% static 'all/img/logo.png' %}" alt="Logo" />
+				</a>
+			</div>
+			<!-- End Logo -->
+			<!-- Top Menu -->
+			<div class="col-md-12 margin-top-30">
+				<div id="hornav" class="pull-right visible-lg">
+					<ul class="nav navbar-nav">
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'privatepage' %}"><span class="fa-home"></span>Home</a></li>
+                        <li><span class="fa-user">{{user.username}}</span>
+							<ul>
+                                <li><a href="{% url 'profile' %}">View Profile</a></li>
+								<li><a href="{% url 'editprofile' %}">Edit Profile</a></li>
+								<li>
+                                    
+                                    <form action="{% url 'logoutuser' %}" method="POST">
+                                        {% csrf_token %}
+                                        <a onclick="this.parentNode.submit();">Log Out</a>
+                                    </form>
+                                    
+                                </li>
+                                <li><a href="{% url 'createtodo' %}">Create a new Story</a></li>
+                                
+							</ul>
+						</li>
+                        {% else %}
+                        <li><a href="{% url 'signupuser' %}">Login/Signup</a></li>
+                        {% endif %}
+						<li><a href="{% url 'contactus' %}"><span class="fa-phone"></span>Contact Us</a></li>
+						<li><a href="{% url 'faq' %}"><span class="fa-info"></span>F.A.Q</a></li>
+						<li><a href="{% url 'global' %}"><span class="fa-globe">Global</span></a></li>
+					</ul>
+                </div>
+				</div>
+				<div class="clear"></div>
+				<!-- End Top Menu -->
+			</div>
+	</div>
+
+
+
+    {% block content %}
+    {% endblock %}
+
+
+
+
+    <br>
+    <br>
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div id="copyright" class="col-md-4">
+                    <p>Made By HK</p>
+                </div>
+                <div id="footermenu" class="col-md-8">
+                    <ul class="list-unstyled list-inline pull-right">
+                        <li>
+                            <a href="https://hkstefan.pythonanywhere.com/" target="_blank" >Check Me Out</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+    <!-- JS -->
+    {% load static %}
+        <script type="text/javascript" src="{% static 'all/js/jquery.min.js' %}" type="text/javascript"></script>
+        <script type="text/javascript" src="{% static 'all/js/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script type="text/javascript" src="{% static 'all/js/scripts.js' %}"></script>
+        <!-- Isotope - Portfolio Sorting -->
+        <script type="text/javascript" src="{% static 'all/js/jquery.isotope.js' %}" type="text/javascript"></script>
+        <!-- Mobile Menu - Slicknav -->
+        <script type="text/javascript" src="{% static 'all/js/jquery.slicknav.js' %}" type="text/javascript"></script>
+        <!-- Animate on Scroll-->
+        <script type="text/javascript" src="{% static 'all/js/jquery.visible.js' %}" charset="utf-8"></script>
+        <!-- Slimbox2-->
+        <script type="text/javascript" src="{% static 'all/js/slimbox2.js' %}" charset="utf-8"></script>
+        <!-- Modernizr -->
+        <script src="{% static 'all/js/modernizr.custom.js' %}" type="text/javascript"></script>
+    <!-- End JS -->
+    </body>
+
+</html>

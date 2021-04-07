@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'confirm/style.css' %}" />
+    <title>Verify Account</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Verify Your Account</h2>
+      <p>We emailed you the six digit code to {{email}} <br/> Enter the code below to confirm your email address.</p>
+      <p style="color: crimson;">{{error}}</p>
+      <form method="POST" action="{% url 'verify' %}" class="code-container">
+        {% csrf_token %}
+          <input type="hidden" name="username" value="{{username}}">
+        <input name="1" type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input name="2" type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input name="3" type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input name="4" type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input name="5" type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input name="6" type="number" class="code" placeholder="0" min="0" max="9" required>
+        <br>
+        <button type="submit" class="verifybtn" >Verify Acount</button>
+      </form>
+
+    </div>
+    <script src="{% static 'confirm/script.js' %}"></script>
+  </body>
+  <style>
+      .verifybtn {
+        background-color: #2c81a8;
+        color: rgba(255, 255, 255, 0.7);
+        border: 0;
+        border-radius: 15px;
+        display: block;
+        margin: 15px auto;
+        padding: 15px 45px;
+        width: 70%;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.3s ease;
+    }
+  </style>
+</html>

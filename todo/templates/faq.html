@@ -1,0 +1,150 @@
+{% extends 'todo/base.html' %}
+{% block content %}
+{% load static %}
+<div id="content" class="container">
+    <div class="row margin-vert-30">
+        <div class="col-md-12">
+            <h2>F.A.Q.(Frequently Asked Questions):</h2>
+            <p>
+                
+            </p>
+            <hr class="margin-vert-40">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="tab-content">
+                        <div class="tab-pane active in fade" id="faq">
+                            <div class="panel-group" id="accordion">
+                                <!-- FAQ Item -->
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#faq-sub">
+                                            <h4 class="panel-title">
+                                            Can anyone see my story if i check private when creating my story? 
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-sub" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            No, if you set your story to be private, no one other than yourself would be able to see it.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End FAQ Item -->
+                                <!-- Faq Item -->
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#faq-sub-2">
+                                            <h4 class="panel-title">
+                                            Can i change my username?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-sub-2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            You can't change your username by yourself, in order to do that you can send us a message in the contact page and we will do it for you.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End FAQ Item -->
+                                <!-- Faq Item -->
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#faq-sub-3">
+                                            <h4 class="panel-title">
+                                           Can i change my story status to public later?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-sub-3" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Of course, you can set your story to be public or private any time you want, however your story will not be placed in the top of global page as stories are sorted by the time of creation, so we suggest you to make a new story.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End FAQ Item -->
+                                <!-- Faq Item -->
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#faq-sub-4">
+                                            <h4 class="panel-title">
+                                            Can other users see my email adress?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-sub-4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            No, no one can see your email adress, so you can use a nickname and write stories basically anonymously
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End FAQ Item -->
+                                <!-- Faq Item -->
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#faq-sub-5">
+                                            <h4 class="panel-title">
+                                           Can i change my password?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-sub-5" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            you can not change your password by yourself, if you forgot your password, you don't need to worry, contact us in contact page and we will help you restore your account.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#faq-sub-7">
+                                            <h4 class="panel-title">
+                                            Nulla ubique omnesque in sit. Sea id persius propriae efficiantur?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-sub-7" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Lorem ipsum dolor sit amet, no cetero voluptatum est, audire sensibus maiestatis vis et. Vitae audire prodesset an his. Nulla ubique omnesque in sit. Sea id persius propriae efficiantur.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#faq-sub-8">
+                                            <h4 class="panel-title">
+                                            Omnium diceret intellegebat ea cum, nibh falli alterum usu at, ne vidit liber vim?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-sub-8" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Omnium diceret intellegebat ea cum, nibh falli alterum usu at, ne vidit liber vim. Vel facer repudiandae at, labitur tibique adipisci et duo, vix viderer debitis ei. Cu eos numquam hendrerit vituperata, eu minim putent vel. Vim ut wisi nominavi delectus, docendi civibus electram usu an. Id evertitur definiebas mel. Pri at partiendo dissentiunt philosophia, ad verear oporteat salutandi mel.
+                                        </div>
+                                    </div>
+                                </div>  -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="margin-bottom-10">Could not find the answer?</h3>
+                    <p>
+                        If you couldn't find the answer to your question, please leave a message for us using the button below,
+                        we will try our best to get in touch with you as soon as possible.
+                    </p>
+                    <a type="button" class="btn btn-bronze btn-sm" href="{% url 'contactus' %}">ASK A QUESTION</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+@media (min-width: 1200px) {
+  .post {
+    width: 70vw;
+    height: 20vh;
+  }
+
+  .postimg {
+    max-height: 15vh;
+    width: 15vw;
+  }
+
+  .post-title {
+    margin-bottom: 2px;
+  }
+  .post-text {
+    max-height: 20vh;
+  }
+}
+/* 
+.blog {
+  width: 90%;
+} */
+#content {
+  width: 100vw;
+}
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+#pre_header,
+#footer {
+  background-image: url("../static/img1.jpg");
+}
+.hidden-lg,
+.slicknav_nav {
+  background-image: url("../static/img1.jpg");
+}
+.nav.navbar-nav,
+.nav.navbar-nav li,
+.nav.navbar-nav:hover {
+  background-image: inherit;
+}
